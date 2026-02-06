@@ -1,0 +1,2 @@
+INSERT INTO table 
+VALUE (1, 'name');

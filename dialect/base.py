@@ -1,4 +1,4 @@
-lass Dialect:
+class Dialect:
     def allowed_statements(self):
         return []
 

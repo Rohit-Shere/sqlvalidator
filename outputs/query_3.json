@@ -1,0 +1,13 @@
+{
+    "q_id": 3,
+    "source": "test2.txt",
+    "sql": "INSERT INTO table",
+    "status": "FAILED",
+    "errors": [
+        {
+            "line": 1,
+            "issue": "Fatal error",
+            "explanation": "cannot access local variable 'values_idx' where it is not associated with a value"
+        }
+    ]
+}

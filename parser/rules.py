@@ -10,7 +10,7 @@ def apply_rules(sql,max_depth):
   depth=0
   max_seen=0
   for ch in sql:
-    if (ch =="("):
+    if (ch =="("):  
       depth+=1
       max_seen=max(max_seen,depth)
     elif(ch==")"):

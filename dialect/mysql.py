@@ -1,4 +1,4 @@
-from dialects.base import Dialect
+from dialect.base import Dialect
 from parser.errors import error
 
 class MySQLDialect(Dialect):

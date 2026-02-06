@@ -1,0 +1,18 @@
+{
+    "q_id": 4,
+    "source": "test2.txt",
+    "sql": "VALUE (1, 'name');",
+    "status": "FAILED",
+    "errors": [
+        {
+            "line": 1,
+            "issue": "Unsupported SQL",
+            "explanation": "Only common DML and DDL statements are supported"
+        },
+        {
+            "line": 1,
+            "issue": "Invalid statement",
+            "explanation": "Not allowed in ANSI sql VALUE"
+        }
+    ]
+}

@@ -7,4 +7,4 @@ Handles:
 """
 
 from .reader import read_input
-from .writer import write_jsonf
+from .writer import write_json_report

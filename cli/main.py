@@ -3,8 +3,8 @@ from io_layer.writer import write_json_report
 from parser.tokenizer import tokenize
 from parser.rules import apply_rules
 from parser.parser import parse
-from dialects.ansi import AnsiDialect
-from dialects.mysql import MySQLDialect
+from dialect.ansi import AnsiDialect
+from dialect.mysql import MySQLDialect
 
 DIALECTS = {
     "ansi": AnsiDialect(),

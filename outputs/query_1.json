@@ -1,0 +1,13 @@
+{
+    "q_id": 1,
+    "source": "test.txt",
+    "sql": "SELECT  FROM table;",
+    "status": "FAILED",
+    "errors": [
+        {
+            "line": 1,
+            "issue": "Empty SELECT list",
+            "explanation": "SELECT must specify columns or * before FROM"
+        }
+    ]
+}
