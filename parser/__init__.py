@@ -8,8 +8,8 @@ THIS PACKAGE CONTAINS:
 
 """
 
-from .tokenizer import tokenize
-from .parser import parse
-from .rules import apply_rules
+from tokenizer import tokenize
+from parser import parse
+from rules import apply_rules
 
 
