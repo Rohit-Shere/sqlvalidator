@@ -1,13 +1,7 @@
 {
     "q_id": 1,
-    "source": "test.txt",
-    "sql": "SELECT  FROM table;",
-    "status": "FAILED",
-    "errors": [
-        {
-            "line": 1,
-            "issue": "Empty SELECT list",
-            "explanation": "SELECT must specify columns or * before FROM"
-        }
-    ]
+    "source": "test_001_create.txt",
+    "sql": "CREATE TABLE employees (\n    id INTEGER,\n    name VARCHAR(100),\n    salary DECIMAL(10,2)\n)",
+    "status": "SUCCESS",
+    "errors": []
 }

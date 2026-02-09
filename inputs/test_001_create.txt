@@ -1,0 +1,5 @@
+CREATE TABLE employees (
+    id INTEGER,
+    name VARCHAR(100),
+    salary DECIMAL(10,2)
+);

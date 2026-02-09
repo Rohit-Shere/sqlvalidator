@@ -1,13 +1,7 @@
 {
     "q_id": 3,
-    "source": "test2.txt",
-    "sql": "INSERT INTO table",
-    "status": "FAILED",
-    "errors": [
-        {
-            "line": 1,
-            "issue": "Fatal error",
-            "explanation": "cannot access local variable 'values_idx' where it is not associated with a value"
-        }
-    ]
+    "source": "test_003_create.txt",
+    "sql": "CREATE TABLE order_items (\n    order_id INTEGER,\n    product_id INTEGER,\n    quantity INTEGER,\n    PRIMARY KEY (order_id, product_id)\n)",
+    "status": "SUCCESS",
+    "errors": []
 }

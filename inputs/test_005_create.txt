@@ -1,0 +1,5 @@
+CREATE TABLE products (
+    product_id INTEGER PRIMARY KEY,
+    price DECIMAL(10,2) CHECK (price > 0),
+    category VARCHAR(50) CHECK (category IN ('Electronics', 'Books', 'Clothing'))
+);

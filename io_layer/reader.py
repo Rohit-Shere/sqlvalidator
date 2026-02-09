@@ -3,14 +3,15 @@ def read_single_file(file_path):
     queries=[]
     with open (file_path,'r') as f:
         content=f.read().strip()
-        #there are mulpiple queries in single file
-        lines=[line.strip() for line in content.splitlines() if line.strip()]
-
-        if len(lines)>1:#file containing multiple queries
-            for line in lines:
-                queries.append({"source":os.path.basename(file_path),"sql": line})
-        else:
-            queries.append({"source":os.path.basename(file_path),"sql": content})
+        # Split by semicolon to handle multiple queries in one file
+        # This is more robust than line-based splitting
+        raw_queries = [q.strip() for q in content.split(';') if q.strip()]
+        
+        if not raw_queries:
+            return queries
+            
+        for query in raw_queries:
+            queries.append({"source":os.path.basename(file_path),"sql": query})
     return queries
 
 

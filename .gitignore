@@ -1,0 +1,5 @@
+outputs/*
+cli/__pycache__
+dialect/__pycache__
+io_layer/__pycache__
+parser/__pycache__

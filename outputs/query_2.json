@@ -1,7 +1,7 @@
 {
     "q_id": 2,
-    "source": "test1.txt",
-    "sql": "SELECT * From ;",
+    "source": "test_002_create.txt",
+    "sql": "CREATE TABLE users (\n    user_id INTEGER PRIMARY KEY,\n    username VARCHAR(50) NOT NULL,\n    email VARCHAR(100) UNIQUE\n)",
     "status": "SUCCESS",
     "errors": []
 }

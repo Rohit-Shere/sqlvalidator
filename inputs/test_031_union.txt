@@ -1,0 +1,4 @@
+SELECT employee_id, name, 'employee' as type FROM employees
+UNION
+SELECT contractor_id, contractor_name, 'contractor' as type FROM contractors
+ORDER BY name;
