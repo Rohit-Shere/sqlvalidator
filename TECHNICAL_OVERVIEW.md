@@ -430,29 +430,29 @@ STEP 5: PARSER (parser.py) - SELECT Checks
                       ↓
 STEP 6: DIALECT VALIDATION (ansi.py)
 ┌─────────────────────────────────────────────────────┐
-│ Check 1: Is SELECT allowed in ANSI? Yes ✅         │
-│ Check 2: Uses forbidden keywords?
-│   ✅ No LIMIT, TOP, or ILIKE                       │
-│ Output: \[] (no errors)                              │
+│ Check 1: Is SELECT allowed in ANSI? Yes             │
+│ Check 2: Uses forbidden keywords?                   │
+│   No LIMIT, TOP, or ILIKE                           │
+│ Output: \[] (no errors)                             │
 └─────────────────────────────────────────────────────┘
                       ↓
 STEP 7: OUTPUT (writer.py)
 ┌─────────────────────────────────────────────────────┐
 │ Status: SUCCESS (no errors)                         │
-│ File: outputs/query\_1.json                          │
+│ File: outputs/query\_1.json                         │
 │ Content: {                                          │
-│   "q\_id": 1,                                        │
+│   "q\_id": 1,                                       │
 │   "source": "test.txt",                             │
-│   "sql": "SELECT \* FROM users",                     │
+│   "sql": "SELECT \* FROM users",                    │
 │   "status": "SUCCESS",                              │
-│   "errors": \[]                                      │
+│   "errors": \[]                                     │
 │ }                                                   │
 └─────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## ❌ Error Detection Examples
+##  Error Detection Examples
 
 ### **Example 1: Empty SELECT List**
 
@@ -526,7 +526,7 @@ Output:
 
 ---
 
-## 🐛 Bugs Fixed
+## Bugs Fixed
 
 ### **Bug #1: Uninitialized Variable in INSERT Validation**
 
@@ -714,16 +714,16 @@ cat outputs/query\_1.json  # View specific report
 
 ---
 
-## ✅ Summary
+##  Summary
 
 This is a **modular, extensible SQL validator** that:
 
-* ✅ Tokenizes SQL correctly (including escaped strings)
-* ✅ Validates statement structure
-* ✅ Applies cross-cutting syntax rules
-* ✅ Supports multiple SQL dialects
-* ✅ Generates structured error reports
-* ✅ Easy to extend with new dialects/rules
+*  Tokenizes SQL correctly (including escaped strings)
+*  Validates statement structure
+*  Applies cross-cutting syntax rules
+*  Supports multiple SQL dialects
+*  Generates structured error reports
+*  Easy to extend with new dialects/rules
 
 **Architecture:** Clean separation of concerns → Easy to test, debug, and extend!
 

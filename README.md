@@ -2,46 +2,46 @@
 
 A comprehensive **multi-dialect SQL query validation engine** that validates SQL queries against ANSI SQL and MySQL standards. Think of it as an **ESLint for SQL** - it tokenizes, parses, and validates SQL syntax with detailed error reporting.
 
-## 🌟 Features
+##  Features
 
 ### Core Validation
-- ✅ **Multi-dialect support**: ANSI SQL and MySQL
-- ✅ **Statement support**: SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, DROP
-- ✅ **Complex queries**: JOINs, subqueries, CTEs, aggregations, set operations
-- ✅ **Advanced clauses**: GROUP BY, HAVING, ORDER BY, WHERE, LIMIT, OFFSET
-- ✅ **Aggregate functions**: COUNT, SUM, AVG, MIN, MAX, and 10+ more
-- ✅ **JOIN types**: INNER, LEFT, RIGHT, FULL, CROSS with ON clause validation
-- ✅ **Set operations**: UNION, INTERSECT, EXCEPT
+-  **Multi-dialect support**: ANSI SQL and MySQL
+-  **Statement support**: SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, DROP
+-  **Complex queries**: JOINs, subqueries, CTEs, aggregations, set operations
+-  **Advanced clauses**: GROUP BY, HAVING, ORDER BY, WHERE, LIMIT, OFFSET
+-  **Aggregate functions**: COUNT, SUM, AVG, MIN, MAX, and 10+ more
+-  **JOIN types**: INNER, LEFT, RIGHT, FULL, CROSS with ON clause validation
+-  **Set operations**: UNION, INTERSECT, EXCEPT
 
 ### Comprehensive Syntax Checking
-- ✅ Unmatched/unclosed parentheses
-- ✅ Unclosed string and identifier literals
-- ✅ Empty clauses (empty SELECT list, WHERE, GROUP BY, etc.)
-- ✅ Missing mandatory keywords and clauses
-- ✅ Invalid clause ordering
-- ✅ Subquery nesting depth validation
-- ✅ Dangling operators (leading/trailing)
-- ✅ Empty IN/VALUES lists
-- ✅ Unmatched CASE/END statements
-- ✅ Aggregate function validation
-- ✅ DISTINCT placement checking
-- ✅ Column alias (AS) validation
+-  Unmatched/unclosed parentheses
+-  Unclosed string and identifier literals
+-  Empty clauses (empty SELECT list, WHERE, GROUP BY, etc.)
+-  Missing mandatory keywords and clauses
+-  Invalid clause ordering
+-  Subquery nesting depth validation
+-  Dangling operators (leading/trailing)
+-  Empty IN/VALUES lists
+-  Unmatched CASE/END statements
+-  Aggregate function validation
+-  DISTINCT placement checking
+-  Column alias (AS) validation
 
 ### Output
-- 📄 **JSON Reports**: Detailed error reports for each query
-- 📊 **Summary Statistics**: Total, passed, and failed query counts
-- 🎯 **Error Details**: Line numbers, issue type, and explanations
+-  **JSON Reports**: Detailed error reports for each query
+-  **Summary Statistics**: Total, passed, and failed query counts
+-  **Error Details**: Line numbers, issue type, and explanations
 
 ---
 
-## 📋 Requirements
+## Requirements
 
 - **Python**: 3.8+
 - **Dependencies**: None (pure Python implementation)
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Clone/Setup the Project
 
@@ -72,7 +72,7 @@ python -m cli.main --help
 
 ---
 
-## 📖 Usage Guide
+## Usage Guide
 
 ### Command-Line Interface
 
@@ -118,8 +118,8 @@ python -m cli.main --help
 Validation Summary
 ============================================================
 Total Queries: 15
-✅ Passed: 14
-❌ Failed: 1
+Passed: 14
+Failed: 1
 ============================================================
 ```
 
@@ -137,7 +137,7 @@ JSON reports are generated in the `outputs/` directory:
 
 ---
 
-## 🎯 Supported SQL Statements
+## Supported SQL Statements
 
 **DML**: SELECT, INSERT, UPDATE, DELETE  
 **DDL**: CREATE TABLE, DROP TABLE, ALTER TABLE  
@@ -147,13 +147,8 @@ For detailed syntax examples and validation rules, see [TECHNICAL_OVERVIEW.md](T
 
 ---
 
-## 🏗️ Architecture
 
-See [TECHNICAL_OVERVIEW.md](TECHNICAL_OVERVIEW.md) for detailed architecture documentation and module descriptions.
-
----
-
-## 📊 Output Format
+## Output Format
 
 ### JSON Report Structure
 
@@ -184,14 +179,14 @@ After validation completes, a summary is displayed:
 Validation Summary
 ============================================================
 Total Queries: 15
-✅ Passed: 14
-❌ Failed: 1
+Passed: 14
+Failed: 1
 ============================================================
 ```
 
 ---
 
-## 📝 Example Queries
+## Example Queries
 
 ### Valid SQL
 ```sql
@@ -217,24 +212,3 @@ SELECT FROM users;  -- Empty SELECT list
 ```
 
 ---
-
-## 📚 Documentation
-
-For more detailed information, see:
-- [CLI_USAGE.md](CLI_USAGE.md) - Detailed CLI usage examples
-- [TECHNICAL_OVERVIEW.md](TECHNICAL_OVERVIEW.md) - Architecture and technical details
-- [requirements.md](requirements.md) - Functional requirements
-- [design.md](design.md) - Design decisions
-- [STUDENT_GUIDE.md](STUDENT_GUIDE.md) - Learning guide
-
----
-
-## 📄 License
-
-This project is part of the BluePineapple SQL learning initiative.
-
----
-
-## 📞 Support
-
-For issues or questions, please refer to the documentation files listed above.

@@ -3,8 +3,7 @@ def read_single_file(file_path):
     queries=[]
     with open (file_path,'r') as f:
         content=f.read().strip()
-        # Split by semicolon to handle multiple queries in one file
-        # This is more robust than line-based splitting
+        
         raw_queries = [q.strip() for q in content.split(';') if q.strip()]
         
         if not raw_queries:

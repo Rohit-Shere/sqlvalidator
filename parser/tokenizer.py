@@ -7,7 +7,7 @@ TOKENS = [
     ("STAR", r"\*"),
     ("IDENTIFIER", r"[a-zA-Z_][a-zA-Z0-9_]*"),
     ("NUMBER", r"\b\d+(?:\.\d+)?\b"),  # Added float support
-    ("STRING", r"'(?:[^'\\]|\\.)*'"),  # Handles escaped quotes like 'don\'t'
+    ("STRING", r"'(?:[^'\\]|\\.)*'"),  # Handles escaped quotes like 'don\'t' 
     ("OPERATOR", r"(=|<>|!=|<|>|<=|>=|\|\||&&|\+|-|\*|/|%)"),
     ("SYMBOL", r"[(),;.]"),
     ("WHITESPACE", r"\s+"),

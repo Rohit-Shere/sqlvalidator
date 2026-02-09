@@ -12,7 +12,7 @@
 ┌─────────────────────────────────────────────────────────────────────┐
 │                    CLI LAYER (cli/main.py)                          │
 │  ┌──────────────────────────────────────────────────────────────┐   │
-│  │ process(path, dialect\\\\\\\\\\\\\\\_name)                                 │   │
+│  │ process(path, dialect_name)                                  │   │
 │  │ - Load dialect (ANSI or MySQL)                               │   │
 │  │ - Read queries from path                                     │   │
 │  │ - Orchestrate validation pipeline                            │   │
@@ -27,7 +27,7 @@
   │ reader.py    │    │ tokenizer.py    │    │  base.py         │
   │ - Read files │    │ - String→tokens │    │  ansi.py         │
   │ - Split `;`  │    │ - Line tracking │    │  mysql.py        │
-  │              │    │ - Regex match   │    │ - Rules \& checks │
+  │              │    │ - Regex match   │    │ - Rules \& checks│
   │ writer.py    │    │                 │    │                  │
   │ - Write JSON │    │ statement.py    │    │ Provides:        │
   │ - Format out │    │ - Get stmt type │    │ - Allowed stmts  │
@@ -54,7 +54,7 @@
                                ▼
                     ┌─────────────────────┐
                     │   OUTPUT (JSON)     │
-                    │  outputs/query\\\_N   │
+                    │  outputs/query_N    │
                     │       .json         │
                     └─────────────────────┘
 ```
@@ -77,7 +77,7 @@ Input Query
           │
           ▼
    Token Stream
-   \[
+   [
      ("KEYWORD", "SELECT", 1),
      ("STAR", "\*", 1),
      ("KEYWORD", "FROM", 1),
@@ -86,7 +86,7 @@ Input Query
      ("IDENTIFIER", "ID", 1),
      ("OPERATOR", "=", 1),
      ("NUMBER", "1", 1)
-   ]
+    ]
           │
     ┌─────┴─────┬─────────────┬──────────────┐
     ▼           ▼             ▼              ▼
@@ -194,16 +194,16 @@ SQL Lexicon
 │       ├─ Find TABLE keyword                                     │
 │       └─ Ensure name after TABLE                                │
 │                                                                 │
-│    Output: errors\[]                                             │
+│    Output: errors\[]                                            │
 └─────────────────────────────────────────────────────────────────┘
                           ║
                           ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │ 3. DIALECT VALIDATION                                           │
 │    ├─ Statement Allowed?                                        │
-│    │  └─ Check against allowed\\\\\\\\\\\\\\\_statements()              │
+│    │  └─ Check against allowed_statements()                     │
 │    ├─ Forbidden Keywords?                                       │
-│    │  └─ Check against forbidden\\\\\\\\\\\\\\\_keywords()              │
+│    │  └─ Check against forbidden_keywords()                     │
 │    ├─ Clause-specific Rules?                                    │
 │    │  ├─ ANSI: Rejects LIMIT, TOP, ILIKE                        │
 │    │  └─ MySQL: LIMIT must have number after it                 │
@@ -228,7 +228,7 @@ SQL Lexicon
                           ▼
            ┌──────────────────────────────┐
            │ WRITE JSON REPORT            │
-           │ outputs/query\_n.json         │
+           │ outputs/query\_n.json        │
            └──────────────────────────────┘
 ```
 
@@ -238,14 +238,14 @@ SQL Lexicon
 
 ```
 OLD (Before Fix):
-TOKENS: \\\\\\\\\\\\\\\[("KEYWORD", "SELECT"), ("IDENTIFIER", "USERS")]
+TOKENS: [("KEYWORD", "SELECT"), ("IDENTIFIER", "USERS")]
               │            │
               │            └─ value
               └─ type
 Problem: No line info for error reporting
 
 NEW (After Fix):
-TOKENS: \\\\\\\\\\\\\\\[("KEYWORD", "SELECT", 1), ("IDENTIFIER", "USERS", 1)]
+TOKENS: [("KEYWORD", "SELECT", 1), ("IDENTIFIER", "USERS", 1)]
               │            │        │
               │            │        └─ line number
               │            └─ value
@@ -261,30 +261,30 @@ Benefit: Can report "line 1" in error messages
 Query: "INSERT VALUES (1) INTO users;"
 
 TOKENIZER
-└─ Tokens: \\\\\\\\\\\\\\\[INSERT, VALUES, ..., INTO, ...]
+└─ Tokens: [INSERT, VALUES, ..., INTO, ...]
    └─ No errors
 
 RULES ENGINE
 ├─ Parentheses: 1 (, 1 ) ✓
 ├─ Strings: even count ✓
 ├─ Nesting: depth ✓
-└─ errors = \\\\\\\\\\\\\\\[]
+└─ errors = []
 
 PARSER (INSERT validation)
 ├─ Find INTO: found at index 3 ✓
 ├─ Find VALUES: found at index 1 ✓
-├─ Check order: into\\\\\\\\\\\\\\\_idx (3) > values\\\\\\\\\\\\\\\_idx (1)?
-│  YES! ✗ → error\\\\\\\\\\\\\\\["Invalid INSERT order"]
+├─ Check order: into_idx (3) > values_idx (1)?
+│  YES! ✗ → error["Invalid INSERT order"]
 ├─ Check table after INTO: skipped (failed earlier)
-└─ errors = \\\\\\\\\\\\\\\[{"issue": "Invalid INSERT order", ...}]
+└─ errors = [{"issue": "Invalid INSERT order", ...}]
 
 DIALECT
 ├─ Is INSERT allowed? ✓
 ├─ Forbidden keywords? ✓
-└─ errors = \\\\\\\\\\\\\\\[] (no new errors)
+└─ errors = [] (no new errors)
 
 FINAL
-errors = \\\\\\\\\\\\\\\[
+errors =[
   {"issue": "Invalid INSERT order", ...}
 ]
 status = "FAILED"
@@ -296,22 +296,22 @@ status = "FAILED"
 
 ```
 Dialect (Abstract Base)
-├─ method: allowed\\\\\\\\\\\\\\\_statements()
-├─ method: max\\\\\\\\\\\\\\\_subquery\\\\\\\\\\\\\\\_depth()
-├─ method: forbidden\\\\\\\\\\\\\\\_keywords()
-├─ method: validate\\\\\\\\\\\\\\\_statement()
-├─ method: validate\\\\\\\\\\\\\\\_clauses()
-└─ method: validate\\\\\\\\\\\\\\\_ddl()
+├─ method: allowed_statements()
+├─ method: max_subquery_depth()
+├─ method: forbidden_keywords()
+├─ method: validate_statement()
+├─ method: validate_clauses()
+└─ method: validate_ddl()
    │
    ├─ AnsiDialect
    │  ├─ allowed: SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, ALTER
    │  ├─ forbidden: LIMIT, TOP, ILIKE
-   │  └─ max\\\\\\\\\\\\\\\_depth: 2
+   │  └─ max_depth: 2
    │
    └─ MySQLDialect
       ├─ allowed: SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, ALTER
       ├─ forbidden: none
-      ├─ max\\\\\\\\\\\\\\\_depth: 4
+      ├─ max_depth: 4
       └─ special: validates LIMIT syntax
 ```
 
@@ -331,12 +331,12 @@ inputs/
    └─ Query 5;
   ↓
 READER (reader.py)
-├─ read\\\\\\\\\\\\\\\_input(path)
+├─ read_input(path)
 │  ├─ Is directory? → read all files
 │  ├─ Is file? → read single file
 │  └─ Extract queries (split by ';')
   ↓
-  \\\\\\\\\\\\\\\[
+ [
     {source: "test.txt", sql: "Query 1"},
     {source: "test.txt", sql: "Query 2"},
     {source: "test.txt", sql: "Query 3"},
@@ -346,23 +346,23 @@ READER (reader.py)
   ↓
 VALIDATION (multiple layers)
   ↓
-  \\\\\\\\\\\\\\\[
-    {q\\\\\\\\\\\\\\\_id: 1, status: "SUCCESS", errors: \\\\\\\\\\\\\\\[]},
-    {q\\\\\\\\\\\\\\\_id: 2, status: "FAILED", errors: \\\\\\\\\\\\\\\[...]},
-    {q\\\\\\\\\\\\\\\_id: 3, status: "SUCCESS", errors: \\\\\\\\\\\\\\\[]},
-    {q\\\\\\\\\\\\\\\_id: 4, status: "FAILED", errors: \\\\\\\\\\\\\\\[...]},
-    {q\\\\\\\\\\\\\\\_id: 5, status: "SUCCESS", errors: \\\\\\\\\\\\\\\[]}
+ [
+    {q_id: 1, status: "SUCCESS", errors: []},
+    {q_id: 2, status: "FAILED", errors: [...]},
+    {q_id: 3, status: "SUCCESS", errors: []},
+    {q_id: 4, status: "FAILED", errors:[...]},
+    {q_id: 5, status: "SUCCESS", errors: []}
   ]
   ↓
 WRITER (writer.py)
-├─ write\\\\\\\\\\\\\\\_json\\\\\\\\\\\\\\\_report(n, src, sql, status, errors)
+├─ write_json_report(n, src, sql, status, errors)
   ↓
 outputs/
-├─ query\\\\\\\\\\\\\\\_1.json
-├─ query\\\\\\\\\\\\\\\_2.json
-├─ query\\\\\\\\\\\\\\\_3.json
-├─ query\\\\\\\\\\\\\\\_4.json
-└─ query\\\\\\\\\\\\\\\_5.json
+├─ query_1.json
+├─ query_2.json
+├─ query_3.json
+├─ query_4.json
+└─ query_5.json
 ```
 
 ---
@@ -371,11 +371,11 @@ outputs/
 
 ```json
 {
-  "q\\\\\\\\\\\\\\\_id": 1,
+  "q_id": 1,
   "source": "test.txt",
   "sql": "SELECT FROM users",
   "status": "FAILED",
-  "errors": \\\\\\\\\\\\\\\[
+  "errors": [
     {
       "line": 1,
       "issue": "Empty SELECT list",

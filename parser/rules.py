@@ -27,7 +27,7 @@ def apply_rules(sql, max_depth):
         errors.append(error(line, "Unclosed identifier", "Identifier must start and end with double quotes"))
     
     # Check subquery nesting depth (only for SELECT statements in subqueries)
-    # More intelligent than just counting parentheses
+    
     depth = 0
     max_seen = 0
     in_string = False

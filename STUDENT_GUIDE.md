@@ -246,8 +246,8 @@ type outputs\query_1.json
 Validation Summary
 ============================================================
 Total Queries: [Count from your files]
-✅ Passed: [Count of valid queries]
-❌ Failed: [Count of invalid queries]
+Passed: [Count of valid queries]
+Failed: [Count of invalid queries]
 ============================================================
 ```
 
@@ -318,7 +318,7 @@ SELECT * FROM users WHERE id = 1;
 
 ---
 
-## 🚀 How to Extend
+## How to Extend
 
 ### Add New SQL Keyword
 Edit `parser/tokenizer.py` TOKENS regex
@@ -335,7 +335,7 @@ Or in `dialect/*.py` for dialect-specific rules
 
 ---
 
-## 📊 Design Patterns Used
+## Design Patterns Used
 
 1. **Layered Architecture** - Separation of concerns
 2. **Strategy Pattern** - Different dialects (ANSI vs MySQL)
@@ -348,13 +348,13 @@ Or in `dialect/*.py` for dialect-specific rules
 
 | Aspect | Before | After |
 |--------|--------|-------|
-| **Escaped Quotes** | ❌ Broken | ✅ Fixed with regex |
-| **File Parsing** | ❌ Line-based (broken) | ✅ Semicolon-based |
-| **Line Tracking** | ❌ No line info | ✅ Every token has line |
-| **Error Messages** | ❌ Inconsistent | ✅ Consistent & accurate |
-| **Code Quality** | ⚠️ Inconsistent | ✅ PEP 8 compliant |
-| **Error Handling** | ❌ Generic | ✅ Specific exceptions |
-| **User Feedback** | ❌ Silent | ✅ Summary statistics |
+| **Escaped Quotes** | Broken |  Fixed with regex |
+| **File Parsing** | Line-based (broken) | Semicolon-based |
+| **Line Tracking** | No line info |  Every token has line |
+| **Error Messages** | Inconsistent |  Consistent & accurate |
+| **Code Quality** | Inconsistent |  PEP 8 compliant |
+| **Error Handling** | Generic | Specific exceptions |
+| **User Feedback** |  Silent |  Summary statistics |
 
 ---
 
@@ -399,28 +399,28 @@ Read validation rules from JSON/YAML config
 
 ---
 
-## 📞 Summary
+## Summary
 
 You have a **production-ready SQL validator** that:
-- ✅ Correctly tokenizes SQL with proper escape handling
-- ✅ Validates statement structure for DML and DDL
-- ✅ Applies global syntax rules
-- ✅ Supports multiple SQL dialects
-- ✅ Generates detailed error reports
-- ✅ Is easily extensible with new features
+- Correctly tokenizes SQL with proper escape handling
+- Validates statement structure for DML and DDL
+- Applies global syntax rules
+- Supports multiple SQL dialects
+- Generates detailed error reports
+- Is easily extensible with new features
 
 **All bugs have been fixed** and the code includes:
-- ✅ Consistent formatting
-- ✅ Better error messages
-- ✅ Line number tracking
-- ✅ Statistics reporting
-- ✅ Proper exception handling
+- Consistent formatting
+- Better error messages
+- Line number tracking
+- Statistics reporting
+- Proper exception handling
 
 **Complete documentation** covers:
-- ✅ Technical architecture
-- ✅ Visual diagrams showing data flow
-- ✅ Practical code examples
-- ✅ Extension guidelines
+- Technical architecture
+- Visual diagrams showing data flow
+- Practical code examples
+- Extension guidelines
 
 **You're ready to:**
 - Run it on your SQL test files
@@ -430,6 +430,6 @@ You have a **production-ready SQL validator** that:
 
 ---
 
-## 📖 Read First
+## Read First
 
 👉 **Start with TECHNICAL_OVERVIEW.md** - It provides the foundation you need to understand the entire system!

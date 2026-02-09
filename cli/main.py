@@ -30,7 +30,7 @@ def process(path, dialect_name="ansi"):
     queries = read_input(path)
     
     if not queries:
-        print(f"⚠️  No queries found in {path}")
+        print(f"No queries found in {path}")
         return
     
     stats = {"total": 0, "passed": 0, "failed": 0}
@@ -72,8 +72,8 @@ def process(path, dialect_name="ansi"):
     print(f"Validation Summary")
     print(f"{'='*60}")
     print(f"Total Queries: {stats['total']}")
-    print(f"✅ Passed: {stats['passed']}")
-    print(f"❌ Failed: {stats['failed']}")
+    print(f"Passed: {stats['passed']}")
+    print(f"Failed: {stats['failed']}")
     print(f"{'='*60}\n")
 
 if __name__ == "__main__":
@@ -110,15 +110,15 @@ Examples:
     
     # Validate that the path exists
     if not os.path.exists(args.path):
-        print(f"❌ Error: Path does not exist: {args.path}")
+        print(f"Error: Path does not exist: {args.path}")
         sys.exit(1)
     
     # Process the SQL queries
     try:
         process(args.path, dialect_name=args.dialect)
     except ValueError as e:
-        print(f"❌ Error: {e}")
+        print(f"Error: {e}")
         sys.exit(1)
     except Exception as e:
-        print(f"❌ Fatal error: {e}")
+        print(f"Fatal error: {e}")
         sys.exit(1)

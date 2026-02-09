@@ -1,11 +1,5 @@
 from parser.errors import error
 from parser.statement import get_statement_type
-from parser.subquery import (
-    extract_subqueries, 
-    validate_subquery_context,
-    validate_cte,
-    validate_union_queries
-)
 
 
 def _find_value_idx(tokens, value):
@@ -52,17 +46,6 @@ def _validate_select(tokens, sql=""):
             
             end_idx = where_idx if where_idx != -1 else (join_idx if join_idx != -1 else len(tokens))
             
-            # Validate JOINs if present
-            if join_idx != -1:
-                for join_type in ["INNER", "LEFT", "RIGHT", "FULL", "CROSS"]:
-                    join_indices = _find_all_indices(tokens, join_type)
-                    for j_idx in join_indices:
-                        if j_idx + 4 >= len(tokens):
-                            errors.append(error(line, "Incomplete JOIN clause", f"{join_type} JOIN requires ON condition"))
-                        # Check for ON clause after JOIN
-                        on_idx = _find_value_idx(tokens[j_idx:], "ON")
-                        if join_type != "CROSS" and on_idx == -1:
-                            errors.append(error(line, "Missing ON clause", f"{join_type} JOIN must have an ON condition"))
     
     # Check WHERE clause if present
     where_idx = _find_value_idx(tokens, "WHERE")
@@ -96,19 +79,7 @@ def _validate_select(tokens, sql=""):
     if limit_idx != -1 and limit_idx + 1 >= len(tokens):
         errors.append(error(line, "Empty LIMIT clause", "LIMIT must be followed by a number"))
     
-    # Check UNION/INTERSECT/EXCEPT (set operations)
-    for set_op in ["UNION", "INTERSECT", "EXCEPT"]:
-        set_idx = _find_value_idx(tokens, set_op)
-        if set_idx != -1 and set_idx + 1 >= len(tokens):
-            errors.append(error(line, f"Incomplete {set_op}", f"{set_op} requires another SELECT statement"))
-    
-    # Validate subqueries within this SELECT if sql is provided
-    if sql and sql.strip():
-        subqueries = extract_subqueries(sql)
-        if subqueries:
-            errors.extend(validate_subquery_context(sql, subqueries))
-    
-    return errors
+
 
 
 def _validate_insert(tokens):
@@ -252,12 +223,7 @@ def parse(sql, tokens):
         errors.append(error(1, "Empty query", "No SQL statement found"))
         return errors
     
-    # Validate CTEs if present
-    if stmt == "WITH":
-        errors.extend(validate_cte(sql))
-    
-    # Validate set operations
-    errors.extend(validate_union_queries(sql))
+
     
     # Route to appropriate validation function
     if stmt == "SELECT":

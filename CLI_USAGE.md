@@ -59,7 +59,7 @@ The validator generates:
 
 - If the specified path does not exist, an error message will be displayed:
   ```
-  ❌ Error: Path does not exist: invalid_path
+  Error: Path does not exist: invalid_path
   ```
 
 - If an invalid dialect is specified, the application will show available dialects and exit with an error.
@@ -72,7 +72,7 @@ $ python -m cli.main inputs --dialect ansi
 Validation Summary
 ============================================================
 Total Queries: 15
-✅ Passed: 14
-❌ Failed: 1
+Passed: 14
+Failed: 1
 ============================================================
 ```
