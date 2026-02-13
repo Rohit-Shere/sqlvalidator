@@ -22,6 +22,10 @@ class MySQLDialect(Dialect):
             idx = keywords.index("LIMIT")
             if idx == len(keywords) - 1:
                 errors.append(error(1, "Invalid LIMIT", "LIMIT must be followed by number"))
+            else:
+                next_value = keywords[idx + 1]
+                if not next_value.isdigit():
+                    errors.append(error(1, "Invalid LIMIT", "LIMIT must be followed by numeric value"))
         return errors
 
     def validate_ddl(self, stmt, tokens):
